@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(5)
             ->hasProfile()
+            ->hasPosts(3)
             ->create();
     }
 }
