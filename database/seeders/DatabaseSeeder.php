@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
+use App\Models\Profile;
+use App\Models\Tag;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,9 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $tags = Tag::factory(3)->create();
+
+        $postFactory = Post::factory(3)->hasAttached($tags);
+
         User::factory(5)
-            ->hasProfile()
-            ->hasPosts(3)
-            ->create();
+             ->has(Profile::factory())
+             ->has($postFactory)
+             ->create();
     }
 }
