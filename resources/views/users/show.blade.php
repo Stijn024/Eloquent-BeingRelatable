@@ -52,4 +52,10 @@
             </div>
         </div>
     </div>
+    <h2 class="text-xl my-4">Comments</h2>
+    @foreach($post->comments as $comment)
+        <div class="px-6 py-4 mb-4 border rounded-lg">
+            {{ $comment->text }}
+        </div>
+    @endforeach    
 @endsection

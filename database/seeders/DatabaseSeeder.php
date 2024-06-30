@@ -18,11 +18,14 @@ class DatabaseSeeder extends Seeder
     {
         $tags = Tag::factory(3)->create();
 
-        $postFactory = Post::factory(3)->hasAttached($tags);
+        $postFactory = Post::factory(3)
+            ->hasComments(3)
+            ->hasAttached($tags);
 
         User::factory(5)
-             ->has(Profile::factory())
-             ->has($postFactory)
-             ->create();
+            ->hasProfile()
+            ->hasComments(3)
+            ->has($postFactory)
+            ->create();
     }
 }
